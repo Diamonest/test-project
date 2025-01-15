@@ -1,19 +1,10 @@
 <?php
 
-interface IRecipe{
-    public function cook();
-    public function print_ingredients();
-}
-
-interface ISchool{
+interface School{
     public function average_score();
 }
 
-interface IPublisher{
-    public function publish($message);
-}
-
-class Student implements ISchool{
+class Student{
     public string $name;
     public int $age;
     public string $grade;
@@ -31,40 +22,35 @@ class Student implements ISchool{
     }
 }
 
-class Recipe implements IRecipe{
-    private string $name;
-    private array $ingredients;
-    public function __construct($name, $ingredients)
+class BankAccount{
+    private int $balance;
+    private float $interest_rate;
+    private array $transactions = [];
+    public function __construct($balance, $interest_rate)
     {
-        $this->name = $name;
-        $this->ingredients = $ingredients;
-    } 
-    public function print_ingredients()
-    {
-        print_r("Ингредиенты для ".$this->name.": ");
-        for($i=0; $i<count($this->ingredients)-1;$i++){
-            print("- ".$this->ingredients[$i]."\n");
+        $this->balance = $balance;
+        $this->interest_rate = $interest_rate;
+    }
+    public function deposit($amount){
+        $this->balance += $amount;
+        $this->transactions[] = "Внесение наличных на сумму $amount"; 
+    }
+    public function withdraw($amount){
+        if ($this->balance < $amount){
+            print_r("Недостаточно средств");
         }
+        $this->balance -= $amount;
+        $this->transactions[] = "Снятие наличных на сумму $amount";
     }
-    public function cook(){
-        print_r("Сегодня мы готовим блюдо ".$this->name.".\nВыполняем инструкцию по приготовлению блюда ".$this->name."...\nБлюдо".$this->name."готово!");
+    public function add_interest(){
+        $interest = $this->balance * $this->interest_rate;
+        $this->balance += $interest;
+        $this->transactions[] = "Начислины проценты по вкладу $interest";
     }
-}
-
-class Publisher implements IPublisher{
-    private string $name;
-    private string $location;
-    public function __construct($name, $location)
-    {
-        $this->name = $name;
-        $this->location = $location;
-    }
-    public function get_info(){
-        return "$this->name ($this->location)";
-    }
-    public function publish($message)
-    {
-        print_r("Готовим \"$message\" к публикации в {$this->get_info()}");
+    public function history(){
+        for ($i = 0; $i < count($this->transactions); $i++){
+            print_r($this->transactions[$i]."\n");
+        }
     }
 }
 
@@ -75,14 +61,9 @@ print("Класс:". $student2->grade."\n");
 print("Оценки:". implode(", ",$student2->scores)."\n");
 print("Средний балл:". $student2->average_score());
 
-
-$spaghetti = new Recipe("Спагетти болоньезе", ["Спагетти", "Фарш", "Томатный соус", "Лук", "Чеснок", "Соль"]);
-$spaghetti->print_ingredients();
-$spaghetti->cook();
-
-$cake = new Recipe("Кекс", ["Мука", "Яйца", "Молоко", "Сахар", "Сливочное масло", "Соль", "Ванилин"]);
-$cake->print_ingredients();
-$cake->cook();
-
-$publisher = new Publisher("АБВГД Пресс", "Москва");
-$publisher->publish("Справочник писателя");
+$account = new BankAccount(100000, 0.05);
+$account->deposit(15000);
+$account->withdraw(7500);
+$account->add_interest();
+$account->history();
+print_r("\n");
