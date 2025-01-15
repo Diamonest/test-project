@@ -1,141 +1,5 @@
 <?php
 
-/*class User{
-    protected $name;
-    protected $surname;
-    protected $patronymic;
-
-    public function __construct($name, $surname, $patronymic){
-        $this->name = $name;
-        $this->surname = $surname;
-        $this->patronymic = $patronymic;
-    }
-    
-    public function __toString(){
-        return $this->name.' '.$this->surname.' '.$this->patronymic;
-    }
-}
-
-class Arr{
-    protected $numbers = [];
-
-    public function add($num){
-        $this -> numbers[] = $num;
-        return $this;
-    }
-    public function __toString(){
-        return (string) array_sum($this->numbers);
-    }
-}
-
-class User1
-	{
-		private $name;
-		private $age;
-		
-		public function __construct($name, $age)
-		{
-			$this->name = $name;
-			$this->age = $age;
-		}
-		
-		public function __get($property)
-		{
-			return $this->$property;
-		}
-	}
-
-class Date1{
-    public $year;
-    public $month;
-    public $day;
-
-    public function __construct($year, $month, $day){
-        $this->year = $year;
-        $this->month = $month;
-        $this->day = $day;
-    }
-
-    public function __get($property){
-        if ($property == "weekDay"){
-            return $this->year.'-'.$this->month.'-'.$this->day;
-        }
-    }
-}
-
-class User3
-	{
-		private $name;
-		private $age;
-		
-        public function __set($property, $value){
-            $this->$property = $value;
-        }
-
-		public function __get($property){
-            return $this->$property;
-        }
-	}
-
-$class = new User("Антон","Червоный","Владимирович");
-echo $class;
-echo "<br>";
-$arr = new Arr;
-echo $arr->add(1)->add(2)->add(3);
-echo "<br>";
-$class1 = new User1("Anton", 23);
-echo $class1->name;
-echo $class1->age;
-echo "<br>";
-$date = new Date1("2024","12","21");
-echo $date->weekDay;
-echo "<br>";
-$user3 = new User3;
-$user3->age = 23;
-$user3->name = "Антон";
-echo $user3->age;
-echo $user3->name;
-echo "<br>";
-echo "<hr>";*/
-
-/*interface Bag{
-    public function getFruit();
-}
-
-class RedBag implements Bag{
-    public function getFruit()
-    {
-        return "Яблоко";
-    }
-}
-class GreenBag implements Bag{
-    public function getFruit()
-    {
-        return "Груша";
-    }
-}
-class BlueBag implements Bag{
-    public function getFruit()
-    {
-        return "Виноград";
-    }
-}
-class Human{
-    public function takeFruit(Bag $bag){
-        $fruit = $bag->getFruit();
-        print_r("Человек взял из сумки $fruit\n");
-    }
-}
-
-$redBag = new RedBag();
-$greenBag = new GreenBag();
-$blueBag = new BlueBag();
-
-$human = new Human();
-$human->takeFruit($redBag);
-$human->takeFruit($greenBag);
-$human->takeFruit($blueBag);*/
-
 interface IShape{
     public function getArea();
 }
@@ -197,6 +61,7 @@ $circle = new Circle(5);
 $comp = new Compile();
 //echo $comp->calculateArea($circle);
 print_r($comp->calculateArea($rect));
+print_r("\n");
 /*$shapes = [new Circle(5), new Rectangle(6,8)];
 
 $compile = new Compile();
@@ -209,6 +74,49 @@ interface AnimalInterface{
 interface OwnerInterface extends AnimalInterface{
     public function giveCommand();
 }
+
+interface ITracks{
+    public function play_random_track();
+}
+
+class MusicAlbum implements ITracks{
+    public string $title;
+    public string $artist;
+    public int $release_year;
+    public string $genre;
+    public array $tracklist;
+
+    public function __construct($title, $artist, $release_year, $genre, $tracklist)
+    {
+        $this->title = $title;
+        $this->artist = $artist;
+        $this->release_year = $release_year;
+        $this->genre = $genre;
+        $this->tracklist = $tracklist;
+    }
+
+    private function play_track($track_number){
+        print_r("Воспроизводится трек ".$track_number.": ".$this->tracklist[$track_number-1]);
+    }
+
+    public function play_random_track()
+    {
+        $track_number = rand(1, count($this->tracklist));
+        $this->play_track($track_number);
+    }
+
+}
+
+$album4 = new MusicAlbum("Deutschland", "Rammstein", 2019, "Neue Deutsche Härte", 
+                    ["Deutschland", "Radio", "Zeig dich", "Ausländer", "Sex", 
+                     "Puppe", "Was ich liebe", "Diamant", "Weit weg", "Tattoo", 
+                     "Hallomann"]);
+print_r("Название:". $album4->title."\n");
+print_r("Исполнитель:". $album4->artist."\n");
+print_r("Год:". $album4->release_year."\n");
+print_r("Жанр:". $album4->genre."\n");
+print_r("Треки:". implode(",",$album4->tracklist)."\n");
+$album4->play_random_track();
 
 
 
