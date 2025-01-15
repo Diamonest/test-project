@@ -85,3 +85,5 @@ print_r("\n");
 
 $publisher = new Publisher("АБВГД Пресс", "Москва");
 $publisher->publish("Справочник писателя");
+
+print_r("Hello my-release");
