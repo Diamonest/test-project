@@ -54,6 +54,21 @@ class BankAccount{
     }
 }
 
+class Publisher{
+    private string $name;
+    private string $location;
+    public function __construct($name, $location){
+        $this->name = $name;
+        $this->location = $location;
+    }
+    private function get_info(){
+        return "$this->name ($this->location)";
+    }
+    public function publish($message){
+        print_r("Готовим $message к публикации в ".$this->get_info());
+    }
+}
+
 $student2 = new Student("Егор Данилов", 12, "5B", [5, 4, 4, 5]);
 print("Имя:". $student2->name."\n");
 print("Возраст:". $student2->age."\n");
@@ -67,3 +82,6 @@ $account->withdraw(7500);
 $account->add_interest();
 $account->history();
 print_r("\n");
+
+$publisher = new Publisher("АБВГД Пресс", "Москва");
+$publisher->publish("Справочник писателя");
