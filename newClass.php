@@ -83,8 +83,11 @@ $account->add_interest();
 $account->history();
 print_r("\n");
 
+print_r("Hello my-release2");
+
 $publisher = new Publisher("АБВГД Пресс", "Москва");
 $publisher->publish("Справочник писателя");
 
 print_r("Hello my-release");
+print_r("Слияние дубль 2 Ветка: my-releases1");
 print_r("Слияние дубль 2 Ветка: my-release");
