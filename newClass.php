@@ -69,6 +69,38 @@ class Publisher{
     }
 }
 
+class Employee{
+    private string $name;
+    private int $age;
+    private int $salary;
+    private float $bonus;
+    public function __construct($name, $age, $salary)
+    {
+        $this->name = $name;
+        $this->age = $age;
+        $this->salary = $salary;
+        $this->bonus = 0;
+    }
+    public function set_bonus($bonus){
+        $this->bonus = $bonus;
+    }
+    public function get_name(){
+        return $this->name;
+    }
+    public function get_age(){
+        return $this->age;
+    }
+    public function get_salary(){
+        return $this->salary;
+    }
+    public function get_bonus(){
+        return $this->bonus;
+    }
+    public function get_total_salary(){
+        return $this->salary + $this->bonus;
+    }
+}
+
 $student2 = new Student("Егор Данилов", 12, "5B", [5, 4, 4, 5]);
 print("Имя:". $student2->name."\n");
 print("Возраст:". $student2->age."\n");
@@ -91,3 +123,11 @@ $publisher->publish("Справочник писателя");
 print_r("Hello my-release");
 print_r("Слияние дубль 2 Ветка: my-releases1");
 print_r("Слияние дубль 2 Ветка: my-release");
+
+$employee = new Employee("Марина Арефьева", 30, 90000);
+$employee->set_bonus(15000);
+print_r("Имя:", $employee->get_name());
+print_r("Возраст:", $employee->get_age());
+print_r("Зарплата:", $employee->get_salary());
+print_r("Бонус:", $employee->get_bonus());
+print_r("Итого начислено:", $employee->get_total_salary());
