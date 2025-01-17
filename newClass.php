@@ -131,3 +131,5 @@ print_r("Возраст:", $employee->get_age());
 print_r("Зарплата:", $employee->get_salary());
 print_r("Бонус:", $employee->get_bonus());
 print_r("Итого начислено:", $employee->get_total_salary());
+
+print_r("хэллоу, гуд бай");
