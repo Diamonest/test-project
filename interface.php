@@ -18,3 +18,6 @@ interface IBankAccount{
     public function add_interest();
     public function history();
 }
+interface IPublisher{
+    public function publish($message);
+}
