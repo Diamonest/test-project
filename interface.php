@@ -15,3 +15,9 @@ interface IPublisher{
 interface IRecipe{
     public function cook();
 }
+interface IBankAccount{
+    public function deposit();
+    public function withdraw();
+    public function add_interest();
+    public function history();
+}
