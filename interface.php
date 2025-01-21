@@ -6,3 +6,6 @@ interface IShape{
 interface IMusicAlbum{
     
 }
+interface IEmployee{
+
+}
