@@ -12,3 +12,6 @@ interface IEmployee{
 interface IPublisher{
     public function publish($message);
 }
+interface IRecipe{
+    public function cook();
+}
