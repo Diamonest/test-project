@@ -134,3 +134,4 @@ print_r("Итого начислено:", $employee->get_total_salary());
 print("Solve conflict git rebase 2");
 print_r("Solve another conflict");
 print_r("solve confilcts many many many many many many");
+print_r("resolve conflict with git rebase");
