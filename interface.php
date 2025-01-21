@@ -9,3 +9,6 @@ interface IMusicAlbum{
 interface IEmployee{
     public function get_total_salary();
 }
+interface IRecipe{
+    public function cook();
+}
