@@ -1,5 +1,7 @@
 <?php
 
+require_once "interface.php";
+
 interface School{
     public function average_score();
 }
@@ -22,7 +24,7 @@ class Student{
     }
 }
 
-class BankAccount{
+class BankAccount implements IBankAccount{
     private int $balance;
     private float $interest_rate;
     private array $transactions = [];
