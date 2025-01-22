@@ -102,6 +102,53 @@ class Employee{
         return $this->salary + $this->bonus;
     }
 }
+class Candy{
+    public $name;
+    public $price;
+    public $weight;
+    public function __construct($name, $price, $weight)
+    {
+        $this->name = $name;
+        $this->price = $price;
+        $this->weight = $weight;
+    }
+}
+class Chocolate extends Candy{
+    public $cocoa_percentage;
+    public $chocolate_type;
+    public function __construct($name,$price,$weight,$cocoa_percentage,$chocolate_type)
+    {
+        $this->name = $name;
+        $this->price = $price;
+        $this->weight = $weight;
+        $this->cocoa_percentage = $cocoa_percentage;
+        $this->chocolate_type = $chocolate_type;
+    }
+}
+class Gummy extends Candy{
+    public $flavor;
+    public $shape;
+    public function __construct($name,$price,$weight,$flavor,$shape)
+    {
+        $this->name = $name;
+        $this->price = $price;
+        $this->weight = $weight;
+        $this->flavor = $flavor;
+        $this->shape = $shape;
+    }
+}
+class HardCandy extends Candy{
+    public $flavor;
+    public $filled;
+    public function __construct($name,$price,$weight,$flavor,$filled)
+    {
+        $this->name = $name;
+        $this->price = $price;
+        $this->weight = $weight;
+        $this->flavor = $flavor;
+        $this->filled = $filled;
+    }
+}
 
 $student2 = new Student("Егор Данилов", 12, "5B", [5, 4, 4, 5]);
 print("Имя:". $student2->name."\n");
@@ -137,3 +184,26 @@ print("Solve conflict git rebase 2");
 print_r("Solve another conflict");
 print_r("solve confilcts many many many many many many");
 print_r("resolve conflict with git rebase");
+
+$chocolate = new Chocolate("Швейцарские луга", 325.50, 220, 40, "молочный");
+$gummy = new Gummy("Жуй-жуй", 76.50, 50, "вишня", "медведь");
+$hard_candy = new HardCandy("Crazy Фрукт", 35.50, 25, "манго",True);
+
+print_r("Шоколадные конфеты:");
+print_r("Название конфет: {$chocolate->name}");
+print_r("Стоимость: {$chocolate->price} руб");
+print_r("Вес брутто: {$chocolate->weight} г");
+print_r("Процент содержания какао: {$chocolate->cocoa_percentage}");
+print_r("Тип шоколада: {$chocolate->chocolate_type}");
+print_r("\nМармелад жевательный:");
+print_r("Название конфет: {$gummy->name}");
+print_r("Стоимость: {$gummy->price} руб");
+print_r("Вес брутто: {$gummy->weight} г");
+print_r("Вкус: {$gummy->flavor}");
+print_r("Форма: {$gummy->shape}");
+print_r("\nФруктовые леденцы:");
+print_r("Название конфет: {$hard_candy->name}");
+print_r("Стоимость: {$hard_candy->price} руб");
+print_r("Вес брутто: {$hard_candy->weight} г");
+print_r("Вкус: {$hard_candy->flavor}");
+print_r("Начинка: {$hard_candy->filled}");
