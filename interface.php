@@ -9,9 +9,6 @@ interface IMusicAlbum{
 interface IEmployee{
     public function get_total_salary();
 }
-interface IPublisher{
-    public function publish($message);
-}
 interface IRecipe{
     public function cook();
 }
@@ -20,4 +17,10 @@ interface IBankAccount{
     public function withdraw($amount);
     public function add_interest();
     public function history();
+}
+interface IPublisher{
+    public function publish($message);
+}
+interface IRecipe{
+    public function cook();
 }
