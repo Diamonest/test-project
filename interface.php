@@ -25,3 +25,8 @@ interface VeganEat{
     public function get_name();
     public function get_quantity();
 }
+interface IArmy{
+    public function move();
+    public function attack();
+    public function defend();
+}

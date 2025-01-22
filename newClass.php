@@ -192,6 +192,57 @@ class Vegeterian{
     }
 }
 
+class Infantry implements IArmy{
+    public function move(){
+        print_r("Пехота движется в пешем порядке");
+    }
+    public function attack(){
+        print_r("Пехота учавствует в ближнем бою");
+    }
+    public function defend(){
+        print_r("Пехота держит строй");
+    }
+}
+
+class Cavalry implements IArmy{
+    public function move(){
+        print_r("Кавалерия движется верхом");
+    }
+    public function attack(){
+        print_r("Кавалерия переходит в атаку");
+    }
+    public function defend(){
+        print_r("Кавалерия защищает фланги");
+    }
+}
+
+class Army{
+    protected array $arr;
+    public function __construct()
+    {
+        $this->arr = [];
+    }
+    public function add_soldier(IArmy $soldier){
+        $this->arr[] = $soldier;
+    }
+    public function attack(){
+        foreach($this->arr as $soldier){
+            $soldier->move();
+            echo "\n";
+            $soldier->attack();
+            echo "\n";
+        }
+    }
+    public function defend(){
+        foreach($this->arr as $soldier){
+            $soldier->move();
+            echo "\n";
+            $soldier->defend();
+            echo "\n";
+        }
+    }
+}
+
 $student2 = new Student("Егор Данилов", 12, "5B", [5, 4, 4, 5]);
 print("Имя:". $student2->name."\n");
 print("Возраст:". $student2->age."\n");
@@ -268,3 +319,12 @@ $vegan->get_name($apple);
 echo "\t";
 $vegan->get_quantity($apple);
 echo "\n";
+
+$army = new Army();
+$army->add_soldier(new Infantry());
+$army->add_soldier(new Cavalry());
+$army->add_soldier(new Infantry());
+$army->add_soldier(new Cavalry());
+
+$army->attack();
+$army->defend();
