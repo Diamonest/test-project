@@ -387,7 +387,6 @@ $army->add_soldier(new Cavalry());
 
 $army->attack();
 $army->defend();
-
 $t_rex = new Carnivore('Тираннозавр', 'Рекс', 4800, 560);
 $velociraptor = new Carnivore('Велоцираптор', 'Зубастик', 30, 70);
 $stegosaurus = new Herbivore('Стегозавр', 'Стегга', 7100, 420);
