@@ -21,3 +21,7 @@ interface IBankAccount{
 interface IPublisher{
     public function publish($message);
 }
+interface VeganEat{
+    public function get_name();
+    public function get_quantity();
+}

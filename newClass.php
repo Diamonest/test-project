@@ -149,6 +149,48 @@ class HardCandy extends Candy{
         $this->filled = $filled;
     }
 }
+class Vegetable implements VeganEat{
+    protected $name;
+    protected $quantity;
+    public function __construct($name, $quantity)
+    {
+        $this->name = $name;
+        $this->quantity = $quantity; 
+    }
+    public function get_name()
+    {
+        return $this->name;
+    }
+    public function get_quantity()
+    {
+        return "{$this->quantity} кг";
+    }
+}
+class Fruit implements VeganEat{
+    protected $name;
+    protected $quantity;
+    public function __construct($name, $quantity)
+    {
+        $this->name = $name;
+        $this->quantity = $quantity;
+    } 
+    public function get_name(){
+        return $this->name;
+    }
+    public function get_quantity()
+    {
+        return "{$this->quantity} кг";
+    }
+}
+
+class Vegeterian{
+    public function get_name(VeganEat $vegan){
+        echo $vegan->get_name();
+    }
+    public function get_quantity(VeganEat $vegan){
+        echo $vegan->get_quantity();
+    }
+}
 
 $student2 = new Student("Егор Данилов", 12, "5B", [5, 4, 4, 5]);
 print("Имя:". $student2->name."\n");
@@ -207,3 +249,22 @@ print_r("Стоимость: {$hard_candy->price} руб");
 print_r("Вес брутто: {$hard_candy->weight} г");
 print_r("Вкус: {$hard_candy->flavor}");
 print_r("Начинка: {$hard_candy->filled}");
+print_r("\n");
+
+$carrot = new Vegetable("Морковь", 5);
+$apple = new Fruit("Яблоки", 10);
+$vegan = new Vegeterian();
+
+print_r($carrot->get_name()."\t");
+print_r($carrot->get_quantity()."\n");
+print_r($apple->get_name()."\t");
+print_r($apple->get_quantity()."\n");
+
+$vegan->get_name($carrot);
+echo "\t";
+$vegan->get_quantity($carrot);
+echo "\n";
+$vegan->get_name($apple);
+echo "\t";
+$vegan->get_quantity($apple);
+echo "\n";
