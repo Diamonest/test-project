@@ -30,3 +30,9 @@ interface IArmy{
     public function attack();
     public function defend();
 }
+interface IDinosaur{
+    public function get_personal_name();
+    public function get_breed();
+    public function get_height();
+    public function get_weight();
+}

@@ -243,6 +243,65 @@ class Army{
     }
 }
 
+class Carnivore implements IDinosaur{
+    protected $personal_name;
+    protected $breed;
+    protected $height;
+    protected $weight;
+    public function __construct($personal_name, $breed, $height, $weight)
+    {
+        $this->personal_name = $personal_name;
+        $this->breed = $breed;
+        $this->height = $height;
+        $this->weight = $weight;
+    }
+    public function get_personal_name()
+    {
+        return $this->personal_name;
+    }
+    public function get_breed()
+    {
+        return $this->breed;
+    }
+    public function get_height()
+    {
+        return $this->height;
+    }
+    public function get_weight()
+    {
+        return $this->weight;
+    }
+    public function get_diet(){
+        return "Травоядный";
+    }
+}
+class Herbivore extends Carnivore implements IDinosaur {
+}
+
+class DinosaurPark{
+    protected array $dinosaurs;
+    public function __construct()
+    {
+        $this->dinosaurs = [];
+    }
+    public function add_dinosaur(IDinosaur $dinosaur){
+        $this->dinosaurs[] = $dinosaur;
+    }
+    public function list_dinosaurs(){
+        $dinosaurData = [];
+        foreach ($this->dinosaurs as $dinosaur) {
+            $dinosaurData[] = [
+                $dinosaur->get_personal_name(),
+                $dinosaur->get_breed(),
+                $dinosaur->get_weight(),
+                $dinosaur->get_height(),
+                $dinosaur->get_diet(),
+            ];
+        }
+        return $dinosaurData;
+    }
+}
+
 $student2 = new Student("Егор Данилов", 12, "5B", [5, 4, 4, 5]);
 print("Имя:". $student2->name."\n");
 print("Возраст:". $student2->age."\n");
@@ -328,3 +387,21 @@ $army->add_soldier(new Cavalry());
 
 $army->attack();
 $army->defend();
+
+$t_rex = new Carnivore('Тираннозавр', 'Рекс', 4800, 560);
+$velociraptor = new Carnivore('Велоцираптор', 'Зубастик', 30, 70);
+$stegosaurus = new Herbivore('Стегозавр', 'Стегга', 7100, 420);
+$triceratops = new Herbivore('Трицератопс', 'Трипси', 8000, 290);
+
+$park = new DinosaurPark();
+
+$park->add_dinosaur($t_rex);
+$park->add_dinosaur($velociraptor);
+$park->add_dinosaur($stegosaurus);
+$park->add_dinosaur($triceratops);
+
+
+foreach($park->list_dinosaurs() as $dinosaur){
+
+    print_r("Имя: {$dinosaur[0]}\nВид: {$dinosaur[1]}\nВес: {$dinosaur[2]} кг\nРост: {$dinosaur[3]} см\nРацион: {$dinosaur[4]}\n");
+}
