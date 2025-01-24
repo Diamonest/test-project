@@ -36,3 +36,6 @@ interface IDinosaur{
     public function get_height();
     public function get_weight();
 }
+interface IMovie{
+    public function play();
+}
