@@ -302,6 +302,73 @@ class DinosaurPark{
     }
 }
 
+class Comedy implements IMovie{
+    public $title;
+    public $director;
+    public function __construct($title, $director)
+    {
+        $this->title = $title;
+        $this->director = $director;
+    }
+    public function play(){
+        print_r("Собираемся смотреть комедию {$this->title}, режиссер {$this->director}");
+    }
+}
+class Drama extends Comedy implements IMovie{
+    public function play()
+    {
+        print_r("Собираемся смотреть драму {$this->title}, режиссер {$this->director}");
+    }
+}
+class Horror extends Comedy implements IMovie{
+    public function play()
+    {
+        print_r("Собираемся смотреть фильм ужасов {$this->title}, режиссер {$this->director}");
+    }
+}
+class Action extends Comedy implements IMovie{
+    public function play()
+    {
+        print_r("Собираемся смотреть боевик {$this->title}, режиссер {$this->director}");
+    }
+}
+class Romance extends Comedy implements IMovie{
+    public function play()
+    {
+        print_r("Собираемс смотреть милодраму {$this->title}, режиссер {$this->director}");
+    }
+}
+class FilmCatalogue{
+    protected array $movies;
+    public function __construct()
+    {
+        $this->movies = [];
+    }
+    public function add_movie($movie){
+        $this->movies[] = $movie;
+    }
+    public function play_all_movies(){
+        foreach($this->movies as $movie){
+            $movie->play();
+        }
+    }
+    public function search_movies_by_genre(IMovie $genre){
+        $result = [];
+        foreach($this->movies as $movie){
+            if ($movie instanceof($genre)){
+                $result[] = $movie;
+            }
+        }
+        return $result;
+    }
+    public function play_movies_by_genre(IMovie $genre){
+        $movies = $this->search_movies_by_genre($genre);
+        foreach($movies as $movie){
+            echo $movie->title;
+        }
+    }
+}
+
 $student2 = new Student("Егор Данилов", 12, "5B", [5, 4, 4, 5]);
 print("Имя:". $student2->name."\n");
 print("Возраст:". $student2->age."\n");
@@ -387,7 +454,6 @@ $army->add_soldier(new Cavalry());
 
 $army->attack();
 $army->defend();
-
 $t_rex = new Carnivore('Тираннозавр', 'Рекс', 4800, 560);
 $velociraptor = new Carnivore('Велоцираптор', 'Зубастик', 30, 70);
 $stegosaurus = new Herbivore('Стегозавр', 'Стегга', 7100, 420);
@@ -400,8 +466,31 @@ $park->add_dinosaur($velociraptor);
 $park->add_dinosaur($stegosaurus);
 $park->add_dinosaur($triceratops);
 
-
 foreach($park->list_dinosaurs() as $dinosaur){
 
     print_r("Имя: {$dinosaur[0]}\nВид: {$dinosaur[1]}\nВес: {$dinosaur[2]} кг\nРост: {$dinosaur[3]} см\nРацион: {$dinosaur[4]}\n");
 }
+
+$my_catalogue = new FilmCatalogue();
+
+$drama = new Drama("Крестный отец", "Френсис Ф. Коппола");
+$codemy = new Comedy("Ночные игры", "Джон Фрэнсис Дейли, Джонатан М. Голдштейн");
+$horror = new Horror("Дракула Брэма Стокера", "Френсис Ф. Коппола");
+$action = new Action("Крушение", "Жан-Франсуа Рише");
+$romance = new Romance("Честная куртизанка", "Маршалл Херсковиц");
+
+$my_catalogue->add_movie($drama);
+$my_catalogue->add_movie($codemy);
+$my_catalogue->add_movie($horror);
+$my_catalogue->add_movie($action);
+$my_catalogue->add_movie($romance);
+
+$my_catalogue->play_all_movies();
+
+print_r("\nНайдены фильмы ужасов:");
+foreach($my_catalogue->search_movies_by_genre($horror) as $movie){
+    print_r($movie->title);
+}
+
+print("\nЗапускаем фильм из жанра 'Мелодрамы':");
+$my_catalogue->play_movies_by_genre($romance);
